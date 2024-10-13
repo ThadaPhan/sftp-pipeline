@@ -1,0 +1,25 @@
+
+services:
+  sftp1:
+    container_name: sftp1
+    image: atmoz/sftp
+    networks:
+      - airflow_network
+    volumes:
+      - ./sftp_data1:/home/sftpuser1/uploads
+    environment:
+      SFTP_USERS: ${SFTP_USER_1}
+
+  sftp2:  
+    container_name: sftp2
+    image: atmoz/sftp
+    networks:
+      - airflow_network
+    volumes:
+      - ./sftp_data2:/home/sftpuser2/uploads
+    environment:
+      SFTP_USERS: ${SFTP_USER_2}
+
+networks:
+  airflow_network:
+    external: true
