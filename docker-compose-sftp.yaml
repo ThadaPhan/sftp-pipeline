@@ -8,7 +8,7 @@ services:
     volumes:
       - ./sftp_data1:/home/sftpuser1/uploads
     environment:
-      SFTP_USERS: "sftpuser1:password1:::uploads"
+      SFTP_USERS: ${SFTP_USER_1}
 
   sftp2:  
     container_name: sftp2
@@ -18,7 +18,7 @@ services:
     volumes:
       - ./sftp_data2:/home/sftpuser2/uploads
     environment:
-      SFTP_USERS: "sftpuser2:password2:::uploads"
+      SFTP_USERS: ${SFTP_USER_2}
 
 networks:
   airflow_network:
