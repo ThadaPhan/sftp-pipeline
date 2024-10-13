@@ -1,17 +1,15 @@
 
 [core]
-executor = 
-load_examples = 
+executor =
+load_examples =
 
 [celery]
-broker_url = 
-result_backend = 
+broker_url =
+result_backend =
 
 [database]
-sql_alchemy_conn = 
+sql_alchemy_conn =
 
 [webserver]
-workers = 
-secret_key = 
-
-
+workers =
+secret_key =

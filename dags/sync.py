@@ -4,7 +4,7 @@
 import os
 import tempfile
 from datetime import (
-    datetime, 
+    datetime,
     timedelta
 )
 
@@ -14,7 +14,7 @@ from common.common import SFTPStorageOperator
 # External
 from airflow.models.param import Param
 from airflow.decorators import (
-    dag, 
+    dag,
     task
 )
 
@@ -23,7 +23,7 @@ from airflow.decorators import (
 def describe_path_on_source(
     params: dict,
 ) -> list[dict]:
-    
+
     result = []
 
     source_conn_id = params.get('source_conn_id')
@@ -34,7 +34,7 @@ def describe_path_on_source(
             result = storage_client.describe_path(path)
         except Exception as e:
             print(e)
-    
+
     return result
 
 
@@ -42,7 +42,7 @@ def describe_path_on_source(
 def describe_path_on_destination(
     params: dict,
 ) -> list[dict]:
-    
+
     result = []
 
     destination_conn_id = params.get('destination_conn_id')
@@ -53,7 +53,7 @@ def describe_path_on_destination(
             result = storage_client.describe_path(path)
         except Exception as e:
             print(e)
-    
+
     return result
 
 
@@ -84,7 +84,7 @@ def get_change_path(
 
 @task()
 def sync_directory(
-    change_path: dict[str:list[str]], 
+    change_path: dict[str:list[str]],
     params: dict,
 ) -> dict[str:list[str]]:
 
@@ -99,9 +99,9 @@ def sync_directory(
     failure_path = []
 
     directories = change_path.get('change_directories')
-    
+
     with SFTPStorageOperator(conn_id=destination_conn_id) as storage_client:
-        
+
         for directory in directories:
             try:
                 storage_client.create_directory(directory)
@@ -110,7 +110,7 @@ def sync_directory(
                 failure_path.append(directory)
             else:
                 success_path.append(directory)
-    
+
     result['success'] = success_path
     result['failure'] = failure_path
 
@@ -119,7 +119,7 @@ def sync_directory(
 
 @task()
 def sync_file(
-    change_path, 
+    change_path,
     params: dict,
 ):
 
@@ -156,7 +156,7 @@ def sync_file(
 
                         destination_storage_client.store_file(
                             remote_full_path=file,
-                            local_full_path=tmp_path                        
+                            local_full_path=tmp_path
                         )
 
                     except Exception as e:
