@@ -1,0 +1,5 @@
+# Code-style
+ruff>=0.1.9,<0.2.0
+
+# Enforce
+pre-commit>=3.4.0,<4.0.0

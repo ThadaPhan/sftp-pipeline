@@ -5,12 +5,12 @@ This project provides **Apache Airflow DAGs** to **synchronize files between SFT
 ---
 
 ## Table of Contents
-1. [Project Overview](#project-overview)  
-2. [Prerequisites](#prerequisites)  
-3. [Installation and Setup](#installation-and-setup)  
-4. [DAG Files](#dag-files)  
-5. [Assumptions and Trade-offs](#assumptions-and-trade-offs)  
-6. [Additional Plugins](#additional-plugins)  
+1. [Project Overview](#project-overview)
+2. [Prerequisites](#prerequisites)
+3. [Installation and Setup](#installation-and-setup)
+4. [DAG Files](#dag-files)
+5. [Assumptions and Trade-offs](#assumptions-and-trade-offs)
+6. [Additional Plugins](#additional-plugins)
 
 ---
 
@@ -23,10 +23,10 @@ This project provides:
 ---
 
 ## Prerequisites
-- **Docker**: Ensure Docker is installed for containerized Airflow setup.  
+- **Docker**: Ensure Docker is installed for containerized Airflow setup.
   [Install Docker](https://docs.docker.com/get-docker/)
-- **Docker Compose**: Required to orchestrate multiple containers (Airflow webserver, scheduler, database).  
-  [Install Docker Compose](https://docs.docker.com/compose/install/)  
+- **Docker Compose**: Required to orchestrate multiple containers (Airflow webserver, scheduler, database).
+  [Install Docker Compose](https://docs.docker.com/compose/install/)
 - **Airflow 2.10.2**: This is stable version.
 - **Python 3.12**: Latest airflow-python version on Docker hub.
 
@@ -52,8 +52,8 @@ SFTP_USER_1="user:pass[:e][:uid[:gid[:dir1[,dir2]...]]]"
 AIRFLOW_UID=1000
 _AIRFLOW_WWW_USER_USERNAME=...
 _AIRFLOW_WWW_USER_PASSWORD=...
-AIRFLOW_CONN_SFTP_SERVER_1=... # Depends on sftp1 config above 
-AIRFLOW_CONN_SFTP_SERVER_2=... # Depends on sftp2 config above 
+AIRFLOW_CONN_SFTP_SERVER_1=... # Depends on sftp1 config above
+AIRFLOW_CONN_SFTP_SERVER_2=... # Depends on sftp2 config above
 ```
 ### 3. Create docker network (bridge driver)
 ```bash
@@ -97,7 +97,7 @@ docker logs <service_name>
     source_describe = describe_path_on_source()
     dest_describe = describe_path_on_destination()
 
-    # Detect change directory and file 
+    # Detect change directory and file
     change_path = get_change_path(
         source_describe,
         dest_describe

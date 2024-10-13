@@ -3,7 +3,7 @@
 # Global
 import os
 from abc import (
-    ABC, 
+    ABC,
     abstractmethod
 )
 
@@ -63,7 +63,7 @@ class StorageOperator(ABC):
                 local_path (str): The path to the directory in local storage.
         """
         pass
-        
+
     @staticmethod
     def _detect_change(self, source_describe: dict, destination_describe: dict, type: str) -> dict:
         """
@@ -115,13 +115,13 @@ class SFTPStorageOperator(StorageOperator):
     def upload_file(self, remote_path: str, local_path: str):
         return self.connection.store_file(
             remote_full_path=remote_path,
-            local_full_path=local_path            
+            local_full_path=local_path
         )
 
     def download_file(self, remote_path: str, local_path: str):
         return self.connection.retrieve_file(
             remote_full_path=remote_path,
-            local_full_path=local_path            
+            local_full_path=local_path
         )
 
     def _detect_change(
@@ -170,6 +170,3 @@ class SFTPStorageOperator(StorageOperator):
         if self.connection:
             self.connection.close_conn()
             print("SFTP hook closed.")
-
-
-
